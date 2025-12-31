@@ -16,14 +16,45 @@ package main
 
 import "fmt"
 
-func main() {
-	fmt.Println(add.calculate(2, 2)) // = 4
+const (
+	Addition = iota
+	Subtraction
+	Multiplication
+	Division
+)
 
-	fmt.Println(sub.calculate(10, 3)) // = 7
+type Operation int
 
-	fmt.Println(mul.calculate(3, 3)) // = 9
-
-	fmt.Println(div.calculate(100, 2)) // = 50
+type Calculator struct {
+	operation Operation
 }
 
+func (c *Calculator) calculate(n1, n2 int) int {
+	switch c.operation {
+	case Addition:
+		return n1 + n2
+	case Subtraction:
 
+		return n1 - n2
+	case Multiplication:
+		return n1 * n2
+	case Division:
+		return n1 / n2
+	default:
+		panic("wrong operation")
+	}
+}
+
+func main() {
+	add := Calculator{Addition}
+	fmt.Println(add.calculate(2, 2)) // = 4
+
+	sub := Calculator{Subtraction}
+	fmt.Println(sub.calculate(10, 3)) // = 7
+
+	mul := Calculator{Multiplication}
+	fmt.Println(mul.calculate(3, 3)) // = 9
+
+	div := Calculator{Division}
+	fmt.Println(div.calculate(100, 2)) // = 50
+}
