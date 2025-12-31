@@ -34,7 +34,6 @@ func (c *Calculator) calculate(n1, n2 int) int {
 	case Addition:
 		return n1 + n2
 	case Subtraction:
-
 		return n1 - n2
 	case Multiplication:
 		return n1 * n2
