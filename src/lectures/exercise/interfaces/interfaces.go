@@ -43,12 +43,13 @@ func (t Truck) Lift() {
 
 func LiftVehicle(l Lifter) {
 	fmt.Printf("Lifting vehicle %v \n", l)
+	l.Lift()
 }
 
 func main() {
 	vehicles := []Lifter{Motorcycle("Ducati"), Car("VW Passat"), Truck("Ford Ranger")}
 	for _, v := range vehicles {
 		fmt.Printf("Handling lifting for %v \n", v)
-		v.Lift()
+		LiftVehicle(v)
 	}
 }
