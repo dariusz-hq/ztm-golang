@@ -18,7 +18,45 @@
 
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"strings"
+)
+
 func main() {
+	reader := bufio.NewReader(os.Stdin)
+	commandCount := 0
+	nonBlankLines := 0
 
+	for {
+		input, inputErr := reader.ReadString('\n')
+		word := strings.TrimSpace(input)
+		if word == "" {
+			continue
+		}
+		if strings.ToLower(word) == "q" {
+			fmt.Println("Exiting...")
+			break
+		}
+		if strings.ToLower(word) == "bye" {
+			fmt.Println("Take care!")
+			commandCount++
+		}
+		if strings.ToLower(word) == "hello" {
+			fmt.Println("Hello! How are you today?")
+			commandCount++
+		}
+		if inputErr != nil {
+			fmt.Printf("Error %v", inputErr)
+			break
+		}
+		if inputErr == io.EOF {
+			fmt.Println("Terminating")
+			break
+		}
+		nonBlankLines++
+	}
 }
-
